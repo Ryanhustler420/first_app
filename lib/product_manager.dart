@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:first_app/products.dart';
 
 class ProductManager extends StatefulWidget {
-  const ProductManager({super.key});
+  final String startingProduct;
+
+  const ProductManager(this.startingProduct, {super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -13,7 +15,13 @@ class ProductManager extends StatefulWidget {
 }
 
 class _ProductManager extends State<ProductManager> {
-  final List<String> _products = ['Food Tester'];
+  final List<String> _products = [];
+
+  @override
+  void initState() {
+    _products.add(widget.startingProduct);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
