@@ -6,7 +6,8 @@ import 'package:first_app/products.dart';
 class ProductManager extends StatefulWidget {
   final String startingProduct;
 
-  const ProductManager(this.startingProduct, {super.key});
+  const ProductManager({super.key, required this.startingProduct});
+  // const ProductManager({super.key, this.startingProduct = 'Sweet Tester'});
 
   @override
   State<StatefulWidget> createState() {
@@ -21,6 +22,11 @@ class _ProductManager extends State<ProductManager> {
   void initState() {
     _products.add(widget.startingProduct);
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant ProductManager oldWidget) {
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
