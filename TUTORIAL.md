@@ -15,3 +15,12 @@
 - flutter run
 
 - Hit `r` on terminal to `hot reload`
+
+> In case your project build fails, Try running these commands in following order.
+
+```bash
+flutter pub cache clean
+flutter clean
+flutter pub get
+flutter run
+```
