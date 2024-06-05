@@ -13,3 +13,5 @@
 - flutter doctor
 
 - flutter run
+
+- Hit `r` on terminal to `hot reload`
