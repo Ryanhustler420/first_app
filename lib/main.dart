@@ -12,6 +12,14 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Easy List"),
         ),
+        body: Card(
+          child: Column(
+            children: [
+              const Text("Food Paradise"),
+              Image.asset("assets/food.jpg"),
+            ],
+          ),
+        ),
       ),
     );
   }
