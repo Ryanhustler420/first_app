@@ -2,8 +2,17 @@ import "package:flutter/material.dart";
 
 void main(List<String> args) => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+
+}
+
+class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +25,9 @@ class MyApp extends StatelessWidget {
           Container(
             margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+
+              },
               child: const Text('Add Product'),
             ),
           ),
