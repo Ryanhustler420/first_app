@@ -9,10 +9,10 @@ class MyApp extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _MyAppState();
   }
-
 }
 
 class _MyAppState extends State<MyApp> {
+  final List<String> _products = ['Food Tester'];
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +25,23 @@ class _MyAppState extends State<MyApp> {
           Container(
             margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
-              onPressed: () {
-
-              },
+              onPressed: () {},
               child: const Text('Add Product'),
             ),
           ),
-          Card(
-            child: Column(
-              children: [
-                Image.asset("assets/food.jpg"),
-                const Text("Food Paradise"),
-              ],
-            ),
-          )
+          Column(
+              children: _products
+                  .map(
+                    (toElement) => Card(
+                      child: Column(
+                        children: [
+                          Image.asset("assets/food.jpg"),
+                          const Text("Food Paradise"),
+                        ],
+                      ),
+                    ),
+                  )
+                  .toList())
         ]),
       ),
     );
