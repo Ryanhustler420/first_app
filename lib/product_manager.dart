@@ -5,9 +5,9 @@ import 'package:first_app/products.dart';
 import 'package:first_app/product_control.dart';
 
 class ProductManager extends StatefulWidget {
-  final String startingProduct;
+  final Map<String, String>? startingProduct;
 
-  const ProductManager({super.key, required this.startingProduct});
+  const ProductManager({super.key, this.startingProduct});
   // const ProductManager({super.key, this.startingProduct = 'Sweet Tester'});
 
   @override
@@ -17,15 +17,18 @@ class ProductManager extends StatefulWidget {
 }
 
 class _ProductManager extends State<ProductManager> {
-  final List<String> _products = [];
+  final List<Map<String, String>?> _products = [];
 
   @override
   void initState() {
-    _products.add(widget.startingProduct);
+    if (widget.startingProduct != null) {
+      _products.add(widget.startingProduct);
+    }
     super.initState();
   }
 
-  void _addProduct(String product) {
+  // void _addProduct(Map<String, dynamic> product) {}
+  void _addProduct(Map<String, String> product) {
     setState(() {
       _products.add(product);
     });

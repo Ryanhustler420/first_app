@@ -10,6 +10,6 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Easy List"),
         ),
-        body: const ProductManager(startingProduct: 'Food Tester'));
+        body: const ProductManager());
   }
 }
