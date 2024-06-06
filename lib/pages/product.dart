@@ -7,30 +7,37 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(product!['title']!),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(product!['imageUrl']!),
-          Container(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(product!['title']!),
-          ),
-          Container(
-            padding: const EdgeInsets.all(10.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-              ),
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text("DELETE"),
+    return PopScope(
+      canPop: true,
+      onPopInvoked: (didPop) async {
+        Navigator.maybePop(context, false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(product!['title']!),
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(product!['imageUrl']!),
+            Container(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(product!['title']!),
             ),
-          ),
-        ],
+            Container(
+              padding: const EdgeInsets.all(10.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                ),
+                onPressed: () => Navigator.maybePop(context, true),
+                child: const Text("DELETE"),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
