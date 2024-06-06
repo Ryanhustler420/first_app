@@ -7,6 +7,20 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          child: Column(
+            children: [
+              AppBar(
+                automaticallyImplyLeading: false,
+                title: const Text("Choose"),
+              ),
+              ListTile(
+                title: const Text("Manage Products"),
+                onTap: () {},
+              )
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: const Text("Easy List"),
         ),
