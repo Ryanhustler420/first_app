@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:first_app/pages/admin.dart';
 import 'package:first_app/product_manager.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,7 +17,12 @@ class HomePage extends StatelessWidget {
               ),
               ListTile(
                 title: const Text("Manage Products"),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                    return AdminPage();
+                  }));
+                },
               )
             ],
           ),
