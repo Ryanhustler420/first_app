@@ -34,6 +34,12 @@ class _ProductManager extends State<ProductManager> {
     });
   }
 
+  void _deleteProduct(int index) {
+    setState(() {
+      _products.removeAt(index);
+    });
+  }
+
   @override
   void didUpdateWidget(covariant ProductManager oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -47,7 +53,7 @@ class _ProductManager extends State<ProductManager> {
           margin: const EdgeInsets.all(10.0),
           child: ProductControl(_addProduct),
         ),
-        Expanded(child: Products(_products))
+        Expanded(child: Products(_products, deleteProduct: _deleteProduct))
       ],
     );
   }

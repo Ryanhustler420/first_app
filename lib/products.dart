@@ -3,9 +3,10 @@ import 'package:first_app/pages/product.dart';
 
 class Products extends StatelessWidget {
   final List<Map<String, String>?> products;
+  final Function? deleteProduct;
 
   // const Products({this.products = const [], super.key});
-  const Products(this.products, {super.key});
+  const Products(this.products, {this.deleteProduct, super.key});
 
   Widget _buildProductItem(BuildContext context, int index) {
     return Card(
@@ -18,14 +19,18 @@ class Products extends StatelessWidget {
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.push<bool>(
                     context,
                     MaterialPageRoute(
                       builder: (BuildContext ctx) {
                         return ProductPage(products[index]);
                       },
                     ),
-                  );
+                  ).then((bool? value) {
+                    if (value == true && deleteProduct != null) {
+                      deleteProduct!(index);
+                    }
+                  });
                 },
                 child: const Text("Details"),
               )
