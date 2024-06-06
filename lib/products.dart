@@ -6,21 +6,22 @@ class Products extends StatelessWidget {
   // const Products({this.products = const [], super.key});
   const Products(this.products, {super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: products
-          .map(
-            (toElement) => Card(
+  Widget _buildProductItem(BuildContext context, int index) {
+    return Card(
               child: Column(
                 children: [
                   Image.asset("assets/food.jpg"),
-                  const Text("Food Paradise"),
+                  Text(products[index]),
                 ],
               ),
-            ),
-          )
-          .toList(),
+            );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: _buildProductItem,
+      itemCount: products.length,
     );
   }
 }
