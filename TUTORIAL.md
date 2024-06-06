@@ -16,6 +16,8 @@
 
 - Hit `r` on terminal to `hot reload`
 
+- Hit `h` on terminal to `see more options`
+
 > In case your project build fails, Try running these commands in following order.
 
 ```bash
