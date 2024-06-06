@@ -12,6 +12,12 @@ class Products extends StatelessWidget {
         children: [
           Image.asset("assets/food.jpg"),
           Text(products[index]),
+          ButtonBar(
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(onPressed: () {}, child: const Text("Details"))
+            ],
+          )
         ],
       ),
     );
