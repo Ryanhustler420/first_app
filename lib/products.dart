@@ -18,20 +18,13 @@ class Products extends StatelessWidget {
             alignment: MainAxisAlignment.center,
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push<bool>(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext ctx) {
-                        return ProductPage(products[index]);
-                      },
-                    ),
-                  ).then((bool? value) {
-                    if (value == true && deleteProduct != null) {
-                      deleteProduct!(index);
-                    }
-                  });
-                },
+                onPressed: () =>
+                    Navigator.pushNamed<bool>(context, '/product/$index')
+                        .then((bool? value) {
+                  if (value == true && deleteProduct != null) {
+                    deleteProduct!(index);
+                  }
+                }),
                 child: const Text("Details"),
               )
             ],

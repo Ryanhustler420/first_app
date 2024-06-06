@@ -1,7 +1,6 @@
 import 'package:first_app/pages/product_create.dart';
 import 'package:first_app/pages/product_list.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/pages/home.dart';
 
 class AdminPage extends StatelessWidget {
   const AdminPage({super.key});
@@ -21,10 +20,7 @@ class AdminPage extends StatelessWidget {
               ListTile(
                 title: const Text("All Products"),
                 onTap: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                    return const HomePage();
-                  }));
+                  Navigator.pushReplacementNamed(context, "/");
                 },
               )
             ],

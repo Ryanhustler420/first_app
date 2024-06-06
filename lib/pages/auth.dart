@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:first_app/pages/home.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -15,10 +14,7 @@ class AuthPage extends StatelessWidget {
           child: const Text("Login"),
           onPressed: () {
             // is already authenticated
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => const HomePage()));
+            Navigator.pushReplacementNamed(context, "/");
           },
         ),
       ),
