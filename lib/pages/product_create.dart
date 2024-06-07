@@ -56,6 +56,9 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
               });
             },
           ),
+          const SizedBox(
+            height: 10,
+          ),
           ElevatedButton(
               onPressed: () {
                 final Map<String, dynamic> product = {
@@ -65,6 +68,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                   'imageUrl': 'assets/food.jpg'
                 };
                 widget.addProduct(product);
+                Navigator.pushNamed(context, "/");
               },
               child: const Text("Save")),
         ],
