@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
-  final Map<String, String>? product;
+  final Map<String, dynamic>? product;
 
   const ProductPage(this.product, {super.key});
 

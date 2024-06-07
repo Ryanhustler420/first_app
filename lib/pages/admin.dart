@@ -3,7 +3,8 @@ import 'package:first_app/pages/product_list.dart';
 import 'package:flutter/material.dart';
 
 class AdminPage extends StatelessWidget {
-  const AdminPage({super.key});
+  final Function addProduct, deleteProduct;
+  const AdminPage({required this.addProduct, required this.deleteProduct, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +42,10 @@ class AdminPage extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: <Widget>[
-            ProductCreatePage(),
-            ProductListPage(),
+            ProductCreatePage(addProduct, deleteProduct),
+            const ProductListPage(),
           ],
         ),
       ),

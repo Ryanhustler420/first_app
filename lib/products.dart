@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:first_app/pages/product.dart';
 
 class Products extends StatelessWidget {
-  final List<Map<String, String>?> products;
-  final Function? deleteProduct;
+  final List<Map<String, dynamic>?> products;
 
   // const Products({this.products = const [], super.key});
-  const Products(this.products, {this.deleteProduct, super.key});
+  const Products(this.products, {super.key});
 
   Widget _buildProductItem(BuildContext context, int index) {
     return Card(
@@ -19,12 +17,7 @@ class Products extends StatelessWidget {
             children: <Widget>[
               ElevatedButton(
                 onPressed: () =>
-                    Navigator.pushNamed<bool>(context, '/product/$index')
-                        .then((bool? value) {
-                  if (value == true && deleteProduct != null) {
-                    deleteProduct!(index);
-                  }
-                }),
+                    Navigator.pushNamed<bool>(context, '/product/$index'),
                 child: const Text("Details"),
               )
             ],
