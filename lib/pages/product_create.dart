@@ -11,9 +11,10 @@ class ProductCreatePage extends StatefulWidget {
 }
 
 class _ProductCreatePageState extends State<ProductCreatePage> {
-  String titleValue = '';
-  double priceValue = 0.0;
-  String descriptionValue = '';
+  String _titleValue = '';
+  double _priceValue = 0.0;
+  String _descriptionValue = '';
+  bool _hasImage = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
             ),
             onChanged: (String value) {
               setState(() {
-                titleValue = value;
+                _titleValue = value;
               });
             },
           ),
@@ -40,7 +41,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
             ),
             onChanged: (String value) {
               setState(() {
-                descriptionValue = value;
+                _descriptionValue = value;
               });
             },
           ),
@@ -52,19 +53,28 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
             ),
             onChanged: (String value) {
               setState(() {
-                priceValue = double.parse(value);
+                _priceValue = double.parse(value);
               });
             },
           ),
           const SizedBox(
             height: 10,
           ),
+          SwitchListTile(
+            value: _hasImage,
+            onChanged: (bool value) {
+              setState(() {
+                _hasImage = value;
+              });
+            },
+            title: const Text("Has Picture"),
+          ),
           ElevatedButton(
               onPressed: () {
                 final Map<String, dynamic> product = {
-                  'title': titleValue,
-                  'price': priceValue,
-                  'description': descriptionValue,
+                  'title': _titleValue,
+                  'price': _priceValue,
+                  'description': _descriptionValue,
                   'imageUrl': 'assets/food.jpg'
                 };
                 widget.addProduct(product);
