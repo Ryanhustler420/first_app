@@ -69,10 +69,14 @@ class _AuthPageState extends State<AuthPage> {
   void _submitForm() {
     print(_email);
     print(_password);
+    Navigator.pushReplacementNamed(context, "/home");
   }
 
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth = MediaQuery.of(context).size.width;
+    final targetWidth = deviceWidth > 786.0 ? 500.0 : deviceWidth * .95;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
@@ -84,28 +88,31 @@ class _AuthPageState extends State<AuthPage> {
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                _buildEmailTextField(),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                _buildPasswordTextField(),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 2,
-                      child: _buildAcceptSwitch(),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: _submitForm,
-                        child: const Text("Login"),
+            child: SizedBox(
+              width: targetWidth,
+              child: Column(
+                children: [
+                  _buildEmailTextField(),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  _buildPasswordTextField(),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 2,
+                        child: _buildAcceptSwitch(),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: _submitForm,
+                          child: const Text("Login"),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

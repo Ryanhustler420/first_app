@@ -1,3 +1,4 @@
+import "package:first_app/pages/auth.dart";
 import "package:flutter/material.dart";
 import "package:flutter/rendering.dart";
 import "package:first_app/pages/home.dart";
@@ -44,7 +45,8 @@ class _MyAppState extends State<MyApp> {
       ),
       // home: const AuthPage(),
       routes: {
-        '/': (BuildContext context) => HomePage(_products),
+        '/': (BuildContext context) => const AuthPage(),
+        '/home': (BuildContext context) => HomePage(_products),
         '/admin': (BuildContext context) =>
             AdminPage(addProduct: _addProduct, deleteProduct: _deleteProduct),
       },
