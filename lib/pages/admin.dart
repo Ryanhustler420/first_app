@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class AdminPage extends StatelessWidget {
   final Function addProduct, deleteProduct;
-  const AdminPage({required this.addProduct, required this.deleteProduct, super.key});
+  const AdminPage(
+      {required this.addProduct, required this.deleteProduct, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class AdminPage extends StatelessWidget {
                 title: const Text("Choose"),
               ),
               ListTile(
+                leading: const Icon(Icons.shop),
                 title: const Text("All Products"),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, "/");

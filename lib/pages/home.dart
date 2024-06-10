@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
               title: const Text("Choose"),
             ),
             ListTile(
+              leading: const Icon(Icons.edit),
               title: const Text("Manage Products"),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/admin');
