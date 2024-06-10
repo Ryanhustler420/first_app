@@ -1,5 +1,5 @@
+import 'package:first_app/widgets/products/products.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/product_manager.dart';
 
 class HomePage extends StatelessWidget {
   final List<Map<String, dynamic>> products;
@@ -43,9 +43,7 @@ class HomePage extends StatelessWidget {
             //   colorFilter: ColorFilter.mode(Colors.black26, BlendMode.dstATop),
             // ),
             ),
-        child: ProductManager(
-          products: products,
-        ),
+        child: Products(products),
       ),
     );
   }
