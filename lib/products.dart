@@ -11,7 +11,43 @@ class Products extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(products[index]!['imageUrl']!),
-          Text(products[index]!['title']!),
+          Container(
+            margin: const EdgeInsets.only(top: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  products[index]!['title']!,
+                  style: const TextStyle(
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Oswald'),
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 6.0, vertical: 2.5),
+                  child: Text(
+                    "\$${products[index]!['price'].toString()}",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 1.0),
+                borderRadius: BorderRadius.circular(5.0)),
+            child: const Text("New York, Time Squre"),
+          ),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[

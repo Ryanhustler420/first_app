@@ -1,9 +1,13 @@
 import "package:flutter/material.dart";
+import "package:flutter/rendering.dart";
 import "package:first_app/pages/home.dart";
 import "package:first_app/pages/admin.dart";
 import "package:first_app/pages/product.dart";
 
-void main(List<String> args) => runApp(const MyApp());
+void main(List<String> args) {
+  // debugPaintSizeEnabled = true;
+  runApp(const MyApp());
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -36,11 +40,13 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark,
         primarySwatch: Colors.deepOrange,
         primaryColor: Colors.deepPurple,
+        // fontFamily: 'Oswald'
       ),
       // home: const AuthPage(),
       routes: {
         '/': (BuildContext context) => HomePage(_products),
-        '/admin': (BuildContext context) => AdminPage(addProduct: _addProduct, deleteProduct: _deleteProduct),
+        '/admin': (BuildContext context) =>
+            AdminPage(addProduct: _addProduct, deleteProduct: _deleteProduct),
       },
       onGenerateRoute: (RouteSettings settings) {
         if (settings.name == null) return null;
@@ -57,8 +63,7 @@ class _MyAppState extends State<MyApp> {
       },
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute(
-            builder: (BuildContext context) =>
-                HomePage(_products));
+            builder: (BuildContext context) => HomePage(_products));
       },
     );
   }

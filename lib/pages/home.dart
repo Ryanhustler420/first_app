@@ -9,27 +9,37 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          child: Column(
-            children: [
-              AppBar(
-                automaticallyImplyLeading: false,
-                title: const Text("Choose"),
-              ),
-              ListTile(
-                title: const Text("Manage Products"),
-                onTap: () {
-                  Navigator.pushReplacementNamed(context, '/admin');
-                },
-              )
-            ],
+      drawer: Drawer(
+        child: Column(
+          children: [
+            AppBar(
+              automaticallyImplyLeading: false,
+              title: const Text("Choose"),
+            ),
+            ListTile(
+              title: const Text("Manage Products"),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/admin');
+              },
+            )
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        title: const Text("Easy List"),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/background.jpg"),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black26, BlendMode.dstATop),
           ),
         ),
-        appBar: AppBar(
-          title: const Text("Easy List"),
-        ),
-        body: ProductManager(
+        child: ProductManager(
           products: products,
-        ));
+        ),
+      ),
+    );
   }
 }
