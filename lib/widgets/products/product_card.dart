@@ -1,4 +1,6 @@
+import 'package:first_app/widgets/products/address_tag.dart';
 import 'package:first_app/widgets/products/price_tag.dart';
+import 'package:first_app/widgets/ui_elements/title_default.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -18,13 +20,7 @@ class ProductCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(
-                  product['title']!,
-                  style: const TextStyle(
-                      fontSize: 26.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Oswald'),
-                ),
+                TitleDefault(product['title']!),
                 const SizedBox(
                   width: 8.0,
                 ),
@@ -32,14 +28,10 @@ class ProductCard extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.all(10.0),
-            padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5),
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey, width: 1.0),
-                borderRadius: BorderRadius.circular(5.0)),
-            child: const Text("New York, Time Squre"),
+          const SizedBox(
+            height: 5.0,
           ),
+          const AddressTag("New York, Time Squre"),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
