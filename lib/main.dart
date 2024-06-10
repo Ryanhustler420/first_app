@@ -34,6 +34,8 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  // learn ui from youtube to practice the ui
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,6 +43,9 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark,
         primarySwatch: Colors.deepOrange,
         primaryColor: Colors.deepPurple,
+        buttonTheme: const ButtonThemeData(
+          buttonColor: Colors.deepOrange,
+        ),
         // fontFamily: 'Oswald'
       ),
       // home: const AuthPage(),

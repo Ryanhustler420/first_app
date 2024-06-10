@@ -98,6 +98,14 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
             title: const Text("Has Picture"),
           ),
           ElevatedButton(onPressed: _submitForm, child: const Text("Save")),
+          // GestureDetector(
+          //   onTap: _submitForm,
+          //   child: Container(
+          //     color: Colors.green,
+          //     padding: const EdgeInsets.all(5.0),
+          //     child: const Text("My Button"),
+          //   ),
+          // ),
         ],
       ),
     );
