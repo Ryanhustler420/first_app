@@ -28,15 +28,21 @@ class HomePage extends StatelessWidget {
       ),
       appBar: AppBar(
         title: const Text("Easy List"),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.favorite),
+          ),
+        ],
       ),
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/background.jpg"),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.black26, BlendMode.dstATop),
-          ),
-        ),
+            // image: DecorationImage(
+            //   image: AssetImage("assets/background.jpg"),
+            //   fit: BoxFit.cover,
+            //   colorFilter: ColorFilter.mode(Colors.black26, BlendMode.dstATop),
+            // ),
+            ),
         child: ProductManager(
           products: products,
         ),

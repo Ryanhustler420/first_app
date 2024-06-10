@@ -42,6 +42,7 @@ class Products extends StatelessWidget {
             ),
           ),
           Container(
+            margin: const EdgeInsets.all(10.0),
             padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey, width: 1.0),
@@ -51,11 +52,17 @@ class Products extends StatelessWidget {
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
-              ElevatedButton(
+              IconButton(
+                icon: const Icon(Icons.info),
                 onPressed: () =>
                     Navigator.pushNamed<bool>(context, '/product/$index'),
-                child: const Text("Details"),
-              )
+              ),
+              IconButton(
+                icon: const Icon(Icons.favorite_border),
+                color: Colors.red,
+                onPressed: () =>
+                    Navigator.pushNamed<bool>(context, '/product/$index'),
+              ),
             ],
           )
         ],
