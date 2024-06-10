@@ -6,26 +6,30 @@ class HomePage extends StatelessWidget {
 
   const HomePage(this.products, {super.key});
 
+  Widget _buildSideDrawer(BuildContext context) {
+    return Drawer(
+      child: Column(
+        children: [
+          AppBar(
+            automaticallyImplyLeading: false,
+            title: const Text("Choose"),
+          ),
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text("Manage Products"),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/admin');
+            },
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: [
-            AppBar(
-              automaticallyImplyLeading: false,
-              title: const Text("Choose"),
-            ),
-            ListTile(
-              leading: const Icon(Icons.edit),
-              title: const Text("Manage Products"),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/admin');
-              },
-            )
-          ],
-        ),
-      ),
+      drawer: _buildSideDrawer(context),
       appBar: AppBar(
         title: const Text("Easy List"),
         actions: <Widget>[
