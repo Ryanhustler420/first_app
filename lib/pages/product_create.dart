@@ -25,8 +25,8 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
         labelText: "Product Name",
       ),
       validator: (String? value) {
-        if (value?.isEmpty == true) {
-          return 'Title is required';
+        if (value != null && (value.isEmpty == true || value.length < 5)) {
+          return 'Title is required and should be 5+ character long';
         }
       },
       onSaved: (String? value) {
@@ -44,6 +44,11 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
         hintText: "This cake is build with heart",
         labelText: "Product Description",
       ),
+      validator: (String? value) {
+        if (value != null && (value.isEmpty == true || value.length < 10)) {
+          return 'Description is required and should be 10+ character long';
+        }
+      },
       onSaved: (String? value) {
         setState(() {
           if (value != null) _descriptionValue = value;
@@ -59,6 +64,13 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
         hintText: "19.99",
         labelText: "Product Price",
       ),
+      validator: (String? value) {
+        if (value != null &&
+            (value.isEmpty == true ||
+                !RegExp(r'(?:[1-9]\d*|0)?(?:\.\d+)?$').hasMatch(value))) {
+          return 'Price is required and should be number';
+        }
+      },
       onSaved: (String? value) {
         setState(() {
           if (value != null) _priceValue = double.parse(value);
