@@ -11,56 +11,59 @@ class ProductCreatePage extends StatefulWidget {
 }
 
 class _ProductCreatePageState extends State<ProductCreatePage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   String _titleValue = '';
   double _priceValue = 0.0;
   String _descriptionValue = '';
   bool _hasImage = false;
 
   Widget _buildTitleTextField() {
-    return TextField(
+    return TextFormField(
       decoration: const InputDecoration(
         hintText: "Super Cake",
         labelText: "Product Name",
       ),
-      onChanged: (String value) {
+      onSaved: (String? value) {
         setState(() {
-          _titleValue = value;
+          if (value != null) _titleValue = value;
         });
       },
     );
   }
 
   Widget _buildDescriptionTextField() {
-    return TextField(
+    return TextFormField(
       maxLines: 4,
       decoration: const InputDecoration(
         hintText: "This cake is build with heart",
         labelText: "Product Description",
       ),
-      onChanged: (String value) {
+      onSaved: (String? value) {
         setState(() {
-          _descriptionValue = value;
+          if (value != null) _descriptionValue = value;
         });
       },
     );
   }
 
   Widget _buildPriceTextField() {
-    return TextField(
+    return TextFormField(
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(
         hintText: "19.99",
         labelText: "Product Price",
       ),
-      onChanged: (String value) {
+      onSaved: (String? value) {
         setState(() {
-          _priceValue = double.parse(value);
+          if (value != null) _priceValue = double.parse(value);
         });
       },
     );
   }
 
   void _submitForm() {
+    _formKey.currentState?.save();
     final Map<String, dynamic> product = {
       'title': _titleValue,
       'price': _priceValue,
@@ -68,7 +71,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
       'imageUrl': 'assets/food.jpg'
     };
     widget.addProduct(product);
-    Navigator.pushNamed(context, "/");
+    Navigator.pushNamed(context, "/home");
   }
 
   @override
@@ -79,34 +82,37 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
 
     return Container(
       margin: const EdgeInsets.all(10.0),
-      child: ListView(
-        padding: EdgeInsets.symmetric(horizontal: targetPadding / 2),
-        children: <Widget>[
-          _buildTitleTextField(),
-          _buildDescriptionTextField(),
-          _buildPriceTextField(),
-          const SizedBox(
-            height: 10,
-          ),
-          SwitchListTile(
-            value: _hasImage,
-            onChanged: (bool value) {
-              setState(() {
-                _hasImage = value;
-              });
-            },
-            title: const Text("Has Picture"),
-          ),
-          ElevatedButton(onPressed: _submitForm, child: const Text("Save")),
-          // GestureDetector(
-          //   onTap: _submitForm,
-          //   child: Container(
-          //     color: Colors.green,
-          //     padding: const EdgeInsets.all(5.0),
-          //     child: const Text("My Button"),
-          //   ),
-          // ),
-        ],
+      child: Form(
+        key: _formKey,
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: targetPadding / 2),
+          children: <Widget>[
+            _buildTitleTextField(),
+            _buildDescriptionTextField(),
+            _buildPriceTextField(),
+            const SizedBox(
+              height: 10,
+            ),
+            SwitchListTile(
+              value: _hasImage,
+              onChanged: (bool value) {
+                setState(() {
+                  _hasImage = value;
+                });
+              },
+              title: const Text("Has Picture"),
+            ),
+            ElevatedButton(onPressed: _submitForm, child: const Text("Save")),
+            // GestureDetector(
+            //   onTap: _submitForm,
+            //   child: Container(
+            //     color: Colors.green,
+            //     padding: const EdgeInsets.all(5.0),
+            //     child: const Text("My Button"),
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }

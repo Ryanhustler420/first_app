@@ -19,7 +19,7 @@ class AdminPage extends StatelessWidget {
             leading: const Icon(Icons.shop),
             title: const Text("All Products"),
             onTap: () {
-              Navigator.pushReplacementNamed(context, "/");
+              Navigator.pushReplacementNamed(context, "/home");
             },
           )
         ],
