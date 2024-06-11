@@ -98,38 +98,43 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
     final double targetWidth = deviceWidth > 786.0 ? 500.0 : deviceWidth;
     final double targetPadding = deviceWidth - targetWidth;
 
-    return Container(
-      margin: const EdgeInsets.all(10.0),
-      child: Form(
-        key: _formKey,
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: targetPadding / 2),
-          children: <Widget>[
-            _buildTitleTextField(),
-            _buildDescriptionTextField(),
-            _buildPriceTextField(),
-            const SizedBox(
-              height: 10,
-            ),
-            SwitchListTile(
-              value: _hasImage,
-              onChanged: (bool value) {
-                setState(() {
-                  _hasImage = value;
-                });
-              },
-              title: const Text("Has Picture"),
-            ),
-            ElevatedButton(onPressed: _submitForm, child: const Text("Save")),
-            // GestureDetector(
-            //   onTap: _submitForm,
-            //   child: Container(
-            //     color: Colors.green,
-            //     padding: const EdgeInsets.all(5.0),
-            //     child: const Text("My Button"),
-            //   ),
-            // ),
-          ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Container(
+        margin: const EdgeInsets.all(10.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: targetPadding / 2),
+            children: <Widget>[
+              _buildTitleTextField(),
+              _buildDescriptionTextField(),
+              _buildPriceTextField(),
+              const SizedBox(
+                height: 10,
+              ),
+              SwitchListTile(
+                value: _hasImage,
+                onChanged: (bool value) {
+                  setState(() {
+                    _hasImage = value;
+                  });
+                },
+                title: const Text("Has Picture"),
+              ),
+              ElevatedButton(onPressed: _submitForm, child: const Text("Save")),
+              // GestureDetector(
+              //   onTap: _submitForm,
+              //   child: Container(
+              //     color: Colors.green,
+              //     padding: const EdgeInsets.all(5.0),
+              //     child: const Text("My Button"),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
