@@ -24,6 +24,11 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
         hintText: "Super Cake",
         labelText: "Product Name",
       ),
+      validator: (String? value) {
+        if (value?.isEmpty == true) {
+          return 'Title is required';
+        }
+      },
       onSaved: (String? value) {
         setState(() {
           if (value != null) _titleValue = value;
@@ -63,6 +68,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   }
 
   void _submitForm() {
+    if (_formKey.currentState?.validate() == false) return;
     _formKey.currentState?.save();
     final Map<String, dynamic> product = {
       'title': _titleValue,
