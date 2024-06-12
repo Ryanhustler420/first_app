@@ -11,34 +11,39 @@ class ProductListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
-        return Column(
-          children: [
-            ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage(products[index]['imageUrl']),
+        return Dismissible(
+          background: Container(color: Colors.red),
+          onDismissed: (DismissDirection? direction) {},
+          key: Key(products[index]['title']),
+          child: Column(
+            children: [
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage(products[index]['imageUrl']),
+                ),
+                title: Text(products[index]['title']),
+                subtitle: Text(
+                  "\$${products[index]['price'].toString()}",
+                ),
+                trailing: IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return ProductEditPage(
+                          product: products[index],
+                          addProduct: () {},
+                          productIndex: index,
+                          updateProduct: updateProduct,
+                        );
+                      },
+                    ));
+                  },
+                ),
               ),
-              title: Text(products[index]['title']),
-              subtitle: Text(
-                "\$${products[index]['price'].toString()}",
-              ),
-              trailing: IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return ProductEditPage(
-                        product: products[index],
-                        addProduct: () {},
-                        productIndex: index,
-                        updateProduct: updateProduct,
-                      );
-                    },
-                  ));
-                },
-              ),
-            ),
-            const Divider()
-          ],
+              const Divider()
+            ],
+          ),
         );
       },
       itemCount: products.length,
