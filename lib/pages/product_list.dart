@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class ProductListPage extends StatelessWidget {
   final List<Map<String, dynamic>> products;
-  const ProductListPage({required this.products, super.key});
+  final Function updateProduct;
+  const ProductListPage({required this.products, required this.updateProduct, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,8 @@ class ProductListPage extends StatelessWidget {
                   return ProductEditPage(
                     product: products[index],
                     addProduct: () {},
-                    updateProduct: () {},
+                    productIndex: index,
+                    updateProduct: updateProduct,
                   );
                 },
               ));

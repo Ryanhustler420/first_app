@@ -3,10 +3,11 @@ import 'package:first_app/pages/product_list.dart';
 import 'package:flutter/material.dart';
 
 class AdminPage extends StatelessWidget {
-  final Function addProduct, deleteProduct;
+  final Function addProduct, deleteProduct, updateProduct;
   final List<Map<String, dynamic>> products;
   const AdminPage(
       {required this.addProduct,
+      required this.updateProduct,
       required this.deleteProduct,
       required this.products,
       super.key});
@@ -58,7 +59,7 @@ class AdminPage extends StatelessWidget {
               addProduct: addProduct,
               updateProduct: () {},
             ),
-            ProductListPage(products: products),
+            ProductListPage(products: products, updateProduct: updateProduct),
           ],
         ),
       ),

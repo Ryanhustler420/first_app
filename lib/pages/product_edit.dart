@@ -4,10 +4,12 @@ class ProductEditPage extends StatefulWidget {
   final Function addProduct;
   final Function updateProduct;
   final Map<String, dynamic>? product;
+  final int? productIndex;
 
   const ProductEditPage(
       {required this.addProduct,
       required this.updateProduct,
+      this.productIndex,
       this.product,
       super.key});
 
@@ -91,7 +93,12 @@ class _ProductEditPageState extends State<ProductEditPage> {
   void _submitForm() {
     if (_formKey.currentState?.validate() == false) return;
     _formKey.currentState?.save();
-    widget.addProduct(_formData);
+    if (widget.product == null) {
+      // add mode
+      widget.addProduct(_formData);
+    } else {
+      widget.updateProduct(widget.productIndex, _formData);
+    }
     Navigator.pushNamed(context, "/home");
   }
 

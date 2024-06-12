@@ -34,6 +34,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _updateProduct(int index, Map<String, dynamic> product) {
+    setState(() {
+      _products[index] = product;
+    });
+  }
+
   // learn ui from youtube to practice the ui
 
   @override
@@ -52,8 +58,10 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/': (BuildContext context) => const AuthPage(),
         '/home': (BuildContext context) => HomePage(_products),
-        '/admin': (BuildContext context) =>
-            AdminPage(addProduct: _addProduct, deleteProduct: _deleteProduct, products: _products),
+        '/admin': (BuildContext context) => AdminPage(
+            addProduct: _addProduct,
+            updateProduct: _updateProduct,
+            deleteProduct: _deleteProduct, products: _products),
       },
       onGenerateRoute: (RouteSettings settings) {
         if (settings.name == null) return null;
