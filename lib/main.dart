@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
         '/': (BuildContext context) => const AuthPage(),
         '/home': (BuildContext context) => HomePage(_products),
         '/admin': (BuildContext context) =>
-            AdminPage(addProduct: _addProduct, deleteProduct: _deleteProduct),
+            AdminPage(addProduct: _addProduct, deleteProduct: _deleteProduct, products: _products),
       },
       onGenerateRoute: (RouteSettings settings) {
         if (settings.name == null) return null;
