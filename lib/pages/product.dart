@@ -1,8 +1,9 @@
 import 'package:first_app/widgets/ui_elements/title_default.dart';
+import 'package:first_app/models/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
-  final Map<String, dynamic>? product;
+  final Product? product;
 
   const ProductPage(this.product, {super.key});
 
@@ -41,15 +42,15 @@ class ProductPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(product!['title']!),
+          title: Text(product!.title),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image.asset(product!['imageUrl']!),
+            Image.asset(product!.imageUrl),
             Container(
               padding: const EdgeInsets.all(10.0),
-              child: TitleDefault(product!['title']!),
+              child: TitleDefault(product!.title),
             ),
             Container(
               padding: const EdgeInsets.all(10.0),
