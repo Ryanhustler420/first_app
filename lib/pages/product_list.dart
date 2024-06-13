@@ -1,28 +1,20 @@
 import 'package:first_app/pages/product_edit.dart';
-import 'package:first_app/models/product.dart';
+import 'package:first_app/scoped-models/products.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductListPage extends StatelessWidget {
-  final List<Product> products;
-  final Function updateProduct, deleteProduct;
-  const ProductListPage(
-      {required this.products,
-      required this.deleteProduct,
-      required this.updateProduct,
-      super.key});
+  const ProductListPage({super.key});
 
-  Widget _buildEditButton(BuildContext context, int index) {
+  Widget _buildEditButton(
+      BuildContext context, int index, ProductsModel model) {
     return IconButton(
       icon: const Icon(Icons.edit),
       onPressed: () {
+        model.selectProduct(index);
         Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context) {
-            return ProductEditPage(
-              product: products[index],
-              addProduct: () {},
-              productIndex: index,
-              updateProduct: updateProduct,
-            );
+            return const ProductEditPage();
           },
         ));
       },
@@ -31,38 +23,42 @@ class ProductListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        return Dismissible(
-          background: Container(color: Colors.red),
-          onDismissed: (DismissDirection direction) {
-            if (direction == DismissDirection.endToStart) {
-              deleteProduct(index);
-            } else if (direction == DismissDirection.startToEnd) {
-              print("Swiped start to end direction");
-            } else {
-              print("Other swiping direction");
-            }
-          },
-          key: Key(products[index].title),
-          child: Column(
-            children: [
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage(products[index].imageUrl),
+    return ScopedModelDescendant(
+        builder: (BuildContext context, Widget? widget, ProductsModel model) {
+      return ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return Dismissible(
+            background: Container(color: Colors.red),
+            onDismissed: (DismissDirection direction) {
+              if (direction == DismissDirection.endToStart) {
+                model.selectProduct(index);
+                model.deleteProduct(index);
+              } else if (direction == DismissDirection.startToEnd) {
+                print("Swiped start to end direction");
+              } else {
+                print("Other swiping direction");
+              }
+            },
+            key: Key(model.products[index].title),
+            child: Column(
+              children: [
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage(model.products[index].imageUrl),
+                  ),
+                  title: Text(model.products[index].title),
+                  subtitle: Text(
+                    "\$${model.products[index].price.toString()}",
+                  ),
+                  trailing: _buildEditButton(context, index, model),
                 ),
-                title: Text(products[index].title),
-                subtitle: Text(
-                  "\$${products[index].price.toString()}",
-                ),
-                trailing: _buildEditButton(context, index),
-              ),
-              const Divider()
-            ],
-          ),
-        );
-      },
-      itemCount: products.length,
-    );
+                const Divider()
+              ],
+            ),
+          );
+        },
+        itemCount: model.products.length,
+      );
+    });
   }
 }

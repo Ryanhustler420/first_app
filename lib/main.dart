@@ -1,7 +1,8 @@
-import "package:first_app/models/product.dart";
 import "package:first_app/pages/auth.dart";
+import "package:first_app/scoped-models/products.dart";
 import "package:flutter/material.dart";
 import "package:flutter/rendering.dart";
+import "package:scoped_model/scoped_model.dart";
 import "package:first_app/pages/home.dart";
 import "package:first_app/pages/admin.dart";
 import "package:first_app/pages/product.dart";
@@ -21,66 +22,46 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final List<Product> _products = [];
-
-  void _addProduct(Product product) {
-    setState(() {
-      _products.add(product);
-    });
-  }
-
-  void _deleteProduct(int index) {
-    setState(() {
-      _products.removeAt(index);
-    });
-  }
-
-  void _updateProduct(int index, Product product) {
-    setState(() {
-      _products[index] = product;
-    });
-  }
-
   // learn ui from youtube to practice the ui
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.deepOrange,
-        primaryColor: Colors.deepPurple,
-        buttonTheme: const ButtonThemeData(
-          buttonColor: Colors.deepOrange,
+    return ScopedModel<ProductsModel>(
+      model: ProductsModel(),
+      child: MaterialApp(
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          primarySwatch: Colors.deepOrange,
+          primaryColor: Colors.deepPurple,
+          buttonTheme: const ButtonThemeData(
+            buttonColor: Colors.deepOrange,
+          ),
+          // fontFamily: 'Oswald'
         ),
-        // fontFamily: 'Oswald'
-      ),
-      // home: const AuthPage(),
-      routes: {
-        '/': (BuildContext context) => const AuthPage(),
-        '/home': (BuildContext context) => HomePage(_products),
-        '/admin': (BuildContext context) => AdminPage(
-            addProduct: _addProduct,
-            updateProduct: _updateProduct,
-            deleteProduct: _deleteProduct, products: _products),
-      },
-      onGenerateRoute: (RouteSettings settings) {
-        if (settings.name == null) return null;
+        // home: const AuthPage(),
+        routes: {
+          '/': (BuildContext context) => const AuthPage(),
+          '/home': (BuildContext context) => const HomePage(),
+          '/admin': (BuildContext context) => const AdminPage(),
+        },
+        onGenerateRoute: (RouteSettings settings) {
+          if (settings.name == null) return null;
 
-        final List<String> pathElements = settings.name!.split('/');
-        if (pathElements[0] != '') return null;
-        if (pathElements[1] == 'product') {
-          final int index = int.parse(pathElements[2]);
-          return MaterialPageRoute<bool>(
-            builder: (BuildContext ctx) => ProductPage(_products[index]),
-          );
-        }
-        return null;
-      },
-      onUnknownRoute: (RouteSettings settings) {
-        return MaterialPageRoute(
-            builder: (BuildContext context) => HomePage(_products));
-      },
+          final List<String> pathElements = settings.name!.split('/');
+          if (pathElements[0] != '') return null;
+          if (pathElements[1] == 'product') {
+            final int index = int.parse(pathElements[2]);
+            return MaterialPageRoute<bool>(
+              builder: (BuildContext ctx) => ProductPage(index),
+            );
+          }
+          return null;
+        },
+        onUnknownRoute: (RouteSettings settings) {
+          return MaterialPageRoute(
+              builder: (BuildContext context) => const HomePage());
+        },
+      ),
     );
   }
 }
