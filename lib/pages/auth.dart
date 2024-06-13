@@ -1,3 +1,5 @@
+import 'package:first_app/scoped-models/user.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
@@ -66,9 +68,8 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  void _submitForm() {
-    print(_email);
-    print(_password);
+  void _submitForm(Function login) {
+    login('example@gmail.com', '12345');
     Navigator.pushReplacementNamed(context, "/home");
   }
 
@@ -103,12 +104,15 @@ class _AuthPageState extends State<AuthPage> {
                         flex: 2,
                         child: _buildAcceptSwitch(),
                       ),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: _submitForm,
-                          child: const Text("Login"),
-                        ),
-                      ),
+                      ScopedModelDescendant(builder: (BuildContext context,
+                          Widget? widget, UserModel model) {
+                        return Expanded(
+                          child: ElevatedButton(
+                            onPressed: () => _submitForm(model.login),
+                            child: const Text("Login"),
+                          ),
+                        );
+                      })
                     ],
                   )
                 ],
